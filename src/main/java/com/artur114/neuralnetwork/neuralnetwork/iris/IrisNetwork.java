@@ -11,6 +11,7 @@ public class IrisNetwork {
 
     public static double[] calculate(double[] data) {
         double[] result = new double[4];
+
         for (int i = 0; i != l0.size; i++) {
             l0.neurons[i].input(data[i]);
             for (int j = 0; j != l1.size; j++) {
@@ -30,6 +31,7 @@ public class IrisNetwork {
             l2.neurons[i].calculateWithData();
             result[i] = l2.neurons[i].getResult();
         }
+
         return result;
     }
 }

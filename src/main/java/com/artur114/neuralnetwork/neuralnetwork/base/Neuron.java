@@ -16,6 +16,7 @@ public class Neuron {
         this.weight = new double[weightSize];
         this.offset = offset;
         this.weightSize = weightSize;
+
         for (int j = 0; j != weight.length; j++) {
             weight[j] = getRandom();
         }
@@ -23,9 +24,9 @@ public class Neuron {
 
     public Neuron(int weightSize, boolean isInput) {
         this.weight = new double[weightSize];
-        isInput = true;
-
+        this.isInput = isInput;
         this.weightSize = weightSize;
+
         for (int j = 0; j != weight.length; j++) {
             weight[j] = getRandom();
         }
