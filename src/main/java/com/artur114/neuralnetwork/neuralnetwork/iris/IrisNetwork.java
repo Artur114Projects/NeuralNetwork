@@ -18,7 +18,7 @@ public class IrisNetwork {
             }
         }
         for (int i = 0; i != l1.size; i++) {
-            l1.neurons[i].calculateWithData(); //
+            l1.neurons[i].calculateWithData();
         }
 
         for (int i = 0; i != l1.size; i++) {
