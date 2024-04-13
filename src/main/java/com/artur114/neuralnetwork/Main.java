@@ -29,6 +29,9 @@ public class Main extends Application {
             data[i] = scan.nextDouble();
         }
         System.out.println(Arrays.toString(IrisNetwork.calculate(data)));
+        System.out.println("debug is start");
+        IrisNetwork.debug(new double[] {0, 0, 0, 1});
+        System.out.println("debug is finish");
 //        launch();
     }
 }

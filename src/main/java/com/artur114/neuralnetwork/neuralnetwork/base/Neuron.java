@@ -6,7 +6,9 @@ import java.util.Random;
 public class Neuron {
     public double[] weight;
     private double data = 0;
-    protected double result = 0;
+    private double result = 0;
+    private double errorData = 0;
+    public double error = 0;
     public double offset = 0;
     public boolean isInput = false;
     public boolean isFinal = false;
@@ -41,22 +43,34 @@ public class Neuron {
         this.data += data;
     }
 
+    public void calculate(double data) {
+        result = data + offset > 0 ? data + offset : 0;
+    }
+
     public void calculateWithData() {
-        result = data + offset;
+        result = data + offset > 0 ? data + offset : 0;
         data = 0;
     }
 
-    public void calculate(double data) {
-        result = data + offset;
+    public void addErrorData(double errorData, int weightIndex) {
+        this.errorData += errorData * weight[weightIndex];
+    }
+
+    public void calculateError(double desiredRes) {
+        error = (((result - desiredRes) * (result - desiredRes)) / 2) * result;
+    }
+
+    public void calculateErrorWithData() {
+        error = errorData * result;
+        errorData = 0;
     }
 
     public double getResult(int index) {
-        double res = result * weight[index];
-        return !isInput ? res > 0 ? res : 0 : res;
+        return result * weight[index];
     }
 
     public double getResult() {
-        return result > 0 ? result : 0;
+        return result;
     }
 
     public void input(double data) {
