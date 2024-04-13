@@ -1,17 +1,20 @@
 package com.artur114.neuralnetwork;
 
+import com.artur114.neuralnetwork.neuralnetwork.iris.IrisDataSet;
 import com.artur114.neuralnetwork.neuralnetwork.iris.IrisNetwork;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main extends Application {
     static Scanner scan = new Scanner(System.in);
+    static String string = "14,4.3,3.0,1.1,0.1,Iris-setosa";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -24,6 +27,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         System.out.println("Hallo!");
+        System.out.println(string.indexOf("versicolor"));
+        System.out.println(Arrays.deepToString(IrisDataSet.getDataInDataSet()));
         double[] data = new double[4];
         for (byte i = 0; i != data.length; i++) {
             data[i] = scan.nextDouble();
