@@ -7,14 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main extends Application {
     static Scanner scan = new Scanner(System.in);
-    static String string = "14,4.3,3.0,1.1,0.1,Iris-setosa";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -27,16 +25,40 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         System.out.println("Hallo!");
-        System.out.println(string.indexOf("versicolor"));
-        System.out.println(Arrays.deepToString(IrisDataSet.getDataInDataSet()));
+        String[] commands = new String[] {"/exit", "/start", "/test"};
+        System.out.println(Arrays.toString(commands));
+        while (true) {
+            String str = scan.next();
+            if (str.equals(commands[0])) {
+                return;
+            } else if (str.equals(commands[1])) {
+                System.out.println();
+                start(scan.nextInt());
+            } else if (str.equals(commands[2])) {
+                test();
+            }
+        }
+        //        launch();
+    }
+
+    public static void start(int generations) {
+        if (generations <= 0) {
+            throw new IllegalArgumentException(generations + " value too small");
+        }
+        for (int i = 0; i != generations; i++) {
+            double[][] data = IrisDataSet.getRandomData();
+            IrisNetwork.calculate(data[0]);
+            IrisNetwork.debug(data[1]);
+        }
+        System.out.println("Finish!");
+    }
+
+    public static void test() {
+        System.out.println();
         double[] data = new double[4];
         for (byte i = 0; i != data.length; i++) {
-            data[i] = scan.nextDouble();
+            data[i] = scan.nextInt() / 10D;
         }
         System.out.println(Arrays.toString(IrisNetwork.calculate(data)));
-        System.out.println("debug is start");
-        IrisNetwork.debug(new double[] {0, 0, 0, 1});
-        System.out.println("debug is finish");
-//        launch();
     }
 }

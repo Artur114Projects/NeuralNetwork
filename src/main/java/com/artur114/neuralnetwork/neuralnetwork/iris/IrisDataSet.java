@@ -1,7 +1,6 @@
 package com.artur114.neuralnetwork.neuralnetwork.iris;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,14 +11,14 @@ public class IrisDataSet {
 
     static File dataF = new File("C:\\Users\\DITStudent\\IdeaProjects\\NeuralNetwork\\src\\main\\resources\\com\\artur114\\neuralnetwork\\data", "Iris.txt");
     static Random random = new Random();
+    static String[] dataOnDataset = readFile(dataF);
 
     public static double[][] getRandomData() {
-
-        return null;
+        return random.nextInt(2) == 0 ? getDataInDataSet() : new double[][] {{(random.nextInt(100) / 10D), (random.nextInt(100) / 10D), (random.nextInt(100) / 10D), (random.nextInt(100) / 10D), }, {0, 0, 0, 1}};
     }
 
     public static double[][] getDataInDataSet() {
-        String dataInString = readFile(dataF)[random.nextInt(150)];
+        String dataInString = dataOnDataset[random.nextInt(150)];
         StringBuilder buf = new StringBuilder();
         double[] data = new double[4];
         double[] desiredRes = new double[4];

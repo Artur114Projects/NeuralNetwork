@@ -1,5 +1,7 @@
 package com.artur114.neuralnetwork.neuralnetwork.base;
 
+import com.artur114.neuralnetwork.neuralnetwork.base.neurons.Neuron;
+
 import java.util.Random;
 
 public class Layer {
